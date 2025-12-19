@@ -22,21 +22,40 @@
         "POLARIS_UNIFIED": "true",
         "LIQUID": "true"
       }
-    }
-    // "github": {
+    },
+    // "gitlab-mcp": {
+    //   "type": "stdio",
     //   "command": "docker",
     //   "args": [
     //     "run",
-    //     "-i",
     //     "--rm",
+    //     "-i",
     //     "-e",
-    //     "GITHUB_PERSONAL_ACCESS_TOKEN",
-    //     "ghcr.io/github/github-mcp-server"
+    //     "GITLAB_API_URL",
+    //     "-e",
+    //     "GITLAB_PERSONAL_ACCESS_TOKEN",
+    //     "mcp/gitlab"
     //   ],
     //   "env": {
-    //     "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PERSONAL_ACCESS_TOKEN}"
+    //     "GITLAB_API_URL": "https://gitlab.hamsa.co/api/v4",
+    //     "GITLAB_PERSONAL_ACCESS_TOKEN": "${GITLAB_PERSONAL_ACCESS_TOKEN}"
     //   }
     // }
+    "github": {
+      "type": "stdio",
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "-e",
+        "GITHUB_PERSONAL_ACCESS_TOKEN",
+        "mcp/github"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PERSONAL_ACCESS_TOKEN}"
+      }
+    }
   },
   "$version": 2
 }

@@ -89,59 +89,76 @@ export default function NewBundle() {
                       borderWidth="base"
                       borderRadius="base"
                       direction="inline"
+                      alignItems="center"
+                      justifyContent="space-between"
                     >
-                      {/* Product Image Container */}
-                      <s-box paddingInlineEnd="base">
-                        {productImage ? (
-                          <s-image
-                            src={productImage}
-                            alt={product.title}
-                            aspectRatio="1/1"
-                            objectFit="cover"
-                            borderRadius="small"
-                          />
-                        ) : (
-                          <s-box
-                            background="subdued"
-                            borderRadius="small"
-                            blockSize="auto"
-                            inlineSize="auto"
-                          >
-                            <s-stack
-                              gap="none"
-                              blockSize="100%"
-                              inlineSize="100%"
-                              alignItems="center"
-                              justifyContent="center"
+                      <s-stack
+                        direction="inline"
+                        gap="base"
+                        alignItems="center"
+                      >
+                        {/* Product Image Container */}
+                        <s-box
+                          paddingInlineEnd="base"
+                          blockSize="80px"
+                          inlineSize="80px"
+                        >
+                          {productImage ? (
+                            <s-image
+                              src={productImage}
+                              alt={product.title}
+                              aspectRatio="1/1"
+                              objectFit="cover"
+                              borderRadius="small"
+                              inlineSize="fill"
+                            />
+                          ) : (
+                            <s-box
+                              background="subdued"
+                              borderRadius="small"
+                              blockSize="auto"
+                              inlineSize="auto"
                             >
-                              <s-icon type="image" color="subdued" />
-                            </s-stack>
-                          </s-box>
-                        )}
-                      </s-box>
+                              <s-stack
+                                gap="none"
+                                blockSize="100%"
+                                inlineSize="100%"
+                                alignItems="center"
+                                justifyContent="center"
+                              >
+                                <s-icon type="image" color="subdued" />
+                              </s-stack>
+                            </s-box>
+                          )}
+                        </s-box>
 
-                      {/* Product Title and Price */}
-                      <s-stack gap="small">
-                        <s-text fontVariantNumeric="tabular-nums">
-                          {product.title}
-                        </s-text>
+                        {/* Product Title */}
+                        <s-heading>{product.title}</s-heading>
+                      </s-stack>
+
+                      <s-stack
+                        direction="inline"
+                        gap="base"
+                        alignItems="center"
+                      >
+                        {/* Product Price */}
                         {productPrice && (
                           <s-text
-                            color="subdued"
                             fontVariantNumeric="tabular-nums"
+                            type="strong"
                           >
                             ${productPrice}
                           </s-text>
                         )}
-                      </s-stack>
 
-                      {/* Product Actions */}
-                      <s-button
-                        variant="tertiary"
-                        tone="critical"
-                        onClick={() => removeProduct(index)}
-                        icon="delete"
-                      />
+                        {/* Product Actions */}
+                        <s-button
+                          variant="tertiary"
+                          tone="critical"
+                          onClick={() => removeProduct(index)}
+                          icon="delete"
+                        />
+                      </s-stack>
                     </s-stack>
                   );
                 })}
