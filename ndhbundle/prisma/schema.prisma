@@ -34,19 +34,30 @@ model Session {
 }
 
 model Bundle {
-  id          String   @id @default(cuid())
-  title       String
-  description String?
-  shop        String   // The shop this bundle belongs to
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  isPublished Boolean  @default(false)
-  bundlePrice Float?   // The special bundle price
-  originalPrice Float? // The combined original price of all items
+  id                String   @id @default(cuid())
+  name              String
+  description       String?
+  tag               String?
+  internalReference String?  // Internal reference for the bundle
+  shop              String   // The shop this bundle belongs to
+  startDate         DateTime? // Date when the bundle becomes available
+  endDate           DateTime? // Date when the bundle expires
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  isPublished       Boolean  @default(false)
+  bundlePrice       Float?   // The special bundle price
+  originalPrice     Float?   // The combined original price of all items
 
   // Relationships
-  bundleItems BundleItem[]
+  bundleItems       BundleItem[]
+
+  @@index([shop])
+  @@index([isPublished])
+  @@index([startDate])
+  @@index([endDate])
+  @@index([internalReference])
 }
+
 
 model BundleItem {
   id           String   @id @default(cuid())
